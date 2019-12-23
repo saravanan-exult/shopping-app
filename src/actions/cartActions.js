@@ -26,9 +26,3 @@ export const subtractQuantity = (id) => {
     }
 }
 
-export const filterBy = (filter) => {
-    return {
-        type: 'FILTER_BY',
-        filter
-    }
-}

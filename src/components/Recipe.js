@@ -19,6 +19,7 @@ class Recipe extends Component {
     }
 
     render() {
+        console.log('addedItems', this.props.addedItems);
         return (
             <div className="container">
                 <ul className="collection">
@@ -28,7 +29,7 @@ class Recipe extends Component {
                             <span>Shipping(+6$)</span>
                         </label>
                     </li>
-                    <li className="collection-item"><b>Total: $ {this.props.total}</b></li>
+                    <li className="collection-item total-amount">Total: $ {this.props.total}</li>
                 </ul>
                 <div className="checkout">
                     <button className="waves-effect waves-light btn">Checkout</button>

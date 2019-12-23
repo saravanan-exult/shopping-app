@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addToCart, filterBy } from '../actions/cartActions';
+import { addToCart } from '../actions/cartActions';
 import { Button } from 'react-materialize';
 
 
@@ -48,11 +48,13 @@ class Home extends React.Component {
                 <div className="row">
                     <div className="col s6"><h3 className="page-title">Our Products</h3></div>
                     <div className="col s6 text-right filter-section">
-                        Show: 
+                        Show by Category: 
                         <select className="mat-select" defaultValue="All" onChange={(e) => this.filterChange(e.target.value)}>
                             <option value="All">All</option>
                             <option value="M">Male</option>
                             <option value="F">Female</option>
+                            <option value="K">Kids</option>
+                            <option value="S">Sports</option>
                         </select>
                     </div>
                 </div>
