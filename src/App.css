@@ -92,6 +92,19 @@ nav ul a.active {
     margin-left: -1px;
 }
 .total-amount {
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     font-weight: 500;
+}
+.price-details {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.mb-0 {
+    margin-bottom: 0;
+}
+.price-summary label {
+    font-size: 0.9rem !important;
+    display: inline-block;
+    margin-bottom: 8px;
 }
