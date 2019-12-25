@@ -37,6 +37,9 @@ body {
     overflow: hidden;
     padding-left: 20px;
 }
+.collection .collection-item .item-img img {
+    max-height: 150px ;
+}
 
 nav {
     background: linear-gradient(to right, rgba(55,180,78,0.9) 0%,rgba(49,178,91,0.9) 24%,rgba(27,171,137,0.96) 77%,rgba(21,169,151,0.94) 100%);
@@ -107,4 +110,7 @@ nav ul a.active {
     font-size: 0.9rem !important;
     display: inline-block;
     margin-bottom: 8px;
+}
+.filter-section .mat-select:not(:last-child) {
+    margin-right: 10px;
 }

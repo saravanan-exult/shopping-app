@@ -20,7 +20,7 @@ class Cart extends Component {
             (
                 this.props.items.map(item => (
                     <li className="collection-item avatar row" key={item.id}>
-                        <div className="item-img col s6"> 
+                        <div className="item-img col s3"> 
                             <img src={item.img} alt={item.img} className=""/>
                         </div>
 

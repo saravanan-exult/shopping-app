@@ -8,24 +8,30 @@ class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: this.props.items
+            items: this.props.items,
+            sort: 'A'
         }
     }
     handleClick = (id) => {
         this.props.addToCart(id);
     }
 
+    sortChange = (value, data) => {
+        let sortedData = data.slice().sort((a, b) => {
+            return (value === 'A') ? a.price - b.price : b.price - a.price;
+        });
+        this.setState({
+            items: sortedData,
+            sort: value
+        });
+    }
+
     filterChange = (filter) => {
-        if(filter !== 'All') {
-            let filteredList = this.props.items.filter(item => item.gender === filter);
-            this.setState({
-                items: filteredList
-            });
-        } else {
-            this.setState({
-                items: this.props.items
-            });
-        }
+        let filteredList = (filter !== 'All') ? this.props.items.filter(item => item.gender === filter) : this.props.items;
+        this.setState({
+            items: filteredList
+        });
+        this.sortChange(this.state.sort, filteredList);
     }
 
     render() {
@@ -47,7 +53,13 @@ class Home extends React.Component {
             <div className="container">
                 <div className="row">
                     <div className="col s6"><h3 className="page-title">Our Products</h3></div>
+                    
                     <div className="col s6 text-right filter-section">
+                        Sort by Price:
+                        <select className="mat-select" value={this.state.sort} onChange={(e) => this.sortChange(e.target.value, this.state.items)}>
+                            <option value="A">Low to High</option>
+                            <option value="D">High to Low</option>
+                        </select>
                         Show by Category: 
                         <select className="mat-select" defaultValue="All" onChange={(e) => this.filterChange(e.target.value)}>
                             <option value="All">All</option>
