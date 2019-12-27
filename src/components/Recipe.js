@@ -61,10 +61,10 @@ class Recipe extends Component {
                         <Table>
                             <thead>
                                 <tr>
-                                    <th data-field="id">Product Name</th>
-                                    <th data-field="name">Rate</th>
-                                    <th data-field="price">Qty</th>
-                                    <th data-field="total">Line Total</th>
+                                    <th data-field="id" width="25%">Product Name</th>
+                                    <th data-field="name" width="25%">Rate</th>
+                                    <th data-field="price" width="30%">Qty</th>
+                                    <th data-field="total" width="20%">Line Total</th>
                                 </tr>
                             </thead>
                             <tbody>
