@@ -1,26 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Modal, Button, Table } from 'react-materialize';
+
 
 class Recipe extends Component {
-
-    componentWillUnmount() {
-        // if(this.refs.shipping.checked) {
-        //     this.props.substractShipping()
-        // }
-    }
-
-    handleChecked = (e) => {
-        if(e.target.checked){
-            this.props.addShipping();
-        }
-        else{
-            this.props.substractShipping();
-        }
-    }
-
     render() {
         console.log('addedItems', this.props.addedItems);
         let discount = (this.props.total >= 50) ? (this.props.total/10) : 0;
+        let invoiceNum = 'Invoice - #' + (Math.floor(Math.random()*90000000) + 10000);
         return (
             <div className="container">
                 <ul className="collection">
@@ -45,21 +32,82 @@ class Recipe extends Component {
                             </label>
                         </div>
                     </li>
-                    {/* <li className="collection-item">
-                        <label>
-                            <input type="checkbox" ref="shipping" onChange= {this.handleChecked} />
-                            <span>Shipping(+6$)</span>
-                        </label>
-                    </li> */}
+                    
                     <li className="collection-item total-amount">Total: <span className="right">$ {(this.props.total.toFixed(2) - discount.toFixed(2)).toFixed(2)}</span></li>
                 </ul>
                 <div className="checkout">
-                    <button className="waves-effect waves-light btn">Checkout</button>
+                <Modal
+                    actions={[
+                        <Button flat modal="close" node="button" waves="green">Close</Button>
+                    ]}
+                    bottomSheet={false}
+                    fixedFooter={false}
+                    header={invoiceNum}
+                    id="modal-0"
+                    options={{
+                        dismissible: true,
+                        endingTop: '10%',
+                        inDuration: 250,
+                        onCloseEnd: null,
+                        onCloseStart: null,
+                        onOpenEnd: null,
+                        onOpenStart: null,
+                        opacity: 0.5,
+                        outDuration: 250,
+                        preventScrolling: true,
+                        startingTop: '4%'
+                    }}
+                    trigger={<Button node="button" disabled={this.props.total === 0}>Checkout</Button>}>
+                        <Table>
+                            <thead>
+                                <tr>
+                                    <th data-field="id">Product Name</th>
+                                    <th data-field="name">Rate</th>
+                                    <th data-field="price">Qty</th>
+                                    <th data-field="total">Line Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    this.props.addedItems.map(item => (
+                                        <tr key={item.id}>
+                                            <td>{item.title}</td>
+                                            <td>{item.price}</td>
+                                            <td>{item.quantity}</td>
+                                            <td>{item.price * item.quantity}</td>
+                                        </tr>
+                                    ))
+                                }
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Sub Total</td>
+                                    <td>$ {(this.props.total).toFixed(2)}</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Discount</td>
+                                    <td>- $ {discount.toFixed(2)}</td>
+                                </tr>
+                                <tr className="total-invoice">
+                                    <td></td>
+                                    <td></td>
+                                    <td>Amount to be paid</td>
+                                    <td>$ {(this.props.total.toFixed(2) - discount.toFixed(2)).toFixed(2)}</td>
+                                </tr>
+                            </tbody>
+                        </Table>
+                        
+                    </Modal>
                 </div>
+                
             </div>
         )
     }
 }
+
+
 
 const mapStateToProps = (state) => {
     return {

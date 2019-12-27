@@ -114,3 +114,8 @@ nav ul a.active {
 .filter-section .mat-select:not(:last-child) {
     margin-right: 10px;
 }
+.total-invoice {
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: rgba(21,169,151,0.94);
+}
